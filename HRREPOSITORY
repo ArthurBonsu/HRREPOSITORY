@@ -1,0 +1,67 @@
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.8.0;
+
+/**
+ * @title Owner
+ * @dev Set & change owner
+ */
+contract HumanResource {
+
+    address private humanresourceid;
+    
+    // event for EVM logging
+    event employeeregisteration(address indexed oldOwner, address indexed newOwner);
+    
+    // modifier to check if caller is owner
+ 
+    /**
+     * @dev Set contract deployer as owner
+     */
+    constructor(address _humanresourceid) {
+//        owner = msg.sender; // 'msg.sender' is sender of current call, contract deployer for a constructor
+        
+  
+ //       emit OwnerSet(address(0), owner);
+    }
+
+    
+    function Recruiting(address recruitmentofficer, address recruiteeid, string date, string role, string description ) public returns( address _recruitmentofficer, address _recruiteeid, string _date, string _role, string _description){
+        
+        return( recruitmentofficer,  recruiteeid, date,  role,  description);
+        
+    }
+    
+    
+    function Hiring (address recruitmentofficer, address recruiteeid, string date, string role, uint payamount , bool hiredornot , string description) public returns  (address _recruitmentofficer, address _recruiteeid, string _date, string _role, uint _payamount , bool _hiredornot , string _description) {
+        return( recruitmentofficer, recruiteeid, date,  role, payamount ,  hiredornot , description);
+    }
+    
+    
+    function Outsourcing(address organization, string organizationname, address contractingorganization, string contractingorganizationname, bool agreed, address contractedemployee, uint payment, string describeout) public returns (address _organization, string _organizationname, address _contractingorganization, string _contractingorganizationname, bool _agreed, address _contractedemployee, uint _payment, string roledescription ) {
+        return(organization, organizationname, contractingorganization,  contractingorganizationname, agreed, contractedemployee, payment,  roledescription);
+    }
+    
+    
+    function Compensation(address organization, address  organizationname, string  faultreason, uint penalty  ) public returns ( address _organization, address  _organizationname, string  _faultreason, uint _penalty ){
+        return ( organization,  organizationname,   faultreason,  penalty )
+    }
+    
+    function Comply(address culprit, string culpritname, bool guiltyornot ) public returns view ( address _culprit, string _culpritname, bool _guiltyornot ) public returns() {
+        return (culprit, culpritname, guiltyornot ));
+    }
+    
+    function Employeeregisteration(address employername,  employer address,  string  ) public returns view () {
+        emit OwnerSet(owner, newOwner);
+        owner = newOwner;
+    }
+    
+
+    /**
+     * @dev Return owner address 
+     * @return address of owner
+     */
+    function getOwner() external view returns (address) {
+        return owner;
+    }
+}
