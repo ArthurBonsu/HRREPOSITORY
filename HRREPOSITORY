@@ -26,34 +26,39 @@ contract HumanResource {
     }
 
     
-    function Recruiting(address recruitmentofficer, address recruiteeid, string date, string role, string description ) public returns( address _recruitmentofficer, address _recruiteeid, string _date, string _role, string _description){
+    function Recruiting(address recruitmentofficer, address recruiteeid, string memory date, string memory role, string memory description, bool recruited  ) 
+    public pure returns  ( address _recruitmentofficer, address _recruiteeid, string memory _date, string memory _role, string memory _description, bool _recruited){
         
-        return( recruitmentofficer,  recruiteeid, date,  role,  description);
+        return( recruitmentofficer,  recruiteeid, date,  role,  description, recruited) ;
         
     }
     
     
-    function Hiring (address recruitmentofficer, address recruiteeid, string date, string role, uint payamount , bool hiredornot , string description) public returns  (address _recruitmentofficer, address _recruiteeid, string _date, string _role, uint _payamount , bool _hiredornot , string _description) {
+    function Hiring (address recruitmentofficer, address recruiteeid, string memory date, string memory role, uint  payamount , bool hiredornot , string memory description) 
+    public pure returns  (address _recruitmentofficer, address _recruiteeid, string memory _date, string memory _role, uint _payamount , bool _hiredornot , string memory _description) {
         return( recruitmentofficer, recruiteeid, date,  role, payamount ,  hiredornot , description);
     }
     
     
-    function Outsourcing(address organization, string organizationname, address contractingorganization, string contractingorganizationname, bool agreed, address contractedemployee, uint payment, string describeout) public returns (address _organization, string _organizationname, address _contractingorganization, string _contractingorganizationname, bool _agreed, address _contractedemployee, uint _payment, string roledescription ) {
-        return(organization, organizationname, contractingorganization,  contractingorganizationname, agreed, contractedemployee, payment,  roledescription);
+    function Outsourcing(address organization, string memory organizationname, address contractingorganization, string memory contractingorganizationname, bool agreed, address contractedemployee, uint payment, string memory describeout) 
+    public pure returns (address _organization, string memory _organizationname, address _contractingorganization, string memory _contractingorganizationname, bool _agreed, address _contractedemployee, uint _payment, string memory _describeout ) {
+        return(organization, organizationname, contractingorganization,  contractingorganizationname, agreed, contractedemployee, payment,  describeout);
     }
     
     
-    function Compensation(address organization, address  organizationname, string  faultreason, uint penalty  ) public returns ( address _organization, address  _organizationname, string  _faultreason, uint _penalty ){
-        return ( organization,  organizationname,   faultreason,  penalty )
+    function Compensation(address organization, address  organizationname, string memory  faultreason, uint penalty  ) public pure returns ( address _organization, address  _organizationname, string memory  _faultreason, uint _penalty  ){
+       return ( organization,  organizationname,   faultreason,  penalty );
     }
     
-    function Comply(address culprit, string culpritname, bool guiltyornot ) public returns view ( address _culprit, string _culpritname, bool _guiltyornot ) public returns() {
-        return (culprit, culpritname, guiltyornot ));
+    function Comply(address culprit, string memory culpritname, bool guiltyornot ) public pure returns  ( address _culprit, string memory _culpritname, bool _guiltyornot )  {
+        return (culprit, culpritname, guiltyornot );
     }
     
-    function Employeeregisteration(address employername,  employer address,  string  ) public returns view () {
-        emit OwnerSet(owner, newOwner);
-        owner = newOwner;
+    function Employeeregisteration(address employeeaddress, string memory employername, string memory employeephone, string memory employeerole, string memory  roldedescription, string memory employeehomeaddress, string memory employeegender  )
+    public pure returns (address _employeeaddress, string memory _employername, string memory  _employeephone, string memory _employeerole, string memory _roldedescription, string memory _employeehomeaddress, string memory _employeegender) {
+       return ( employeeaddress, employername,  employeephone,  employeerole,  roldedescription,  employeehomeaddress,  employeegender  );
+       
+       
     }
     
 
@@ -61,7 +66,5 @@ contract HumanResource {
      * @dev Return owner address 
      * @return address of owner
      */
-    function getOwner() external view returns (address) {
-        return owner;
-    }
+
 }
