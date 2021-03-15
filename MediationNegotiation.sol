@@ -1,4 +1,4 @@
-pragma solidity >=0.4.0 <0.6.0;
+pragma solidity >=0.7.0 <0.8.0;
 
 
 contract MediationNegotiation  {
@@ -82,19 +82,20 @@ emit mediationBidEvent( mediationid, mediationname, mediationphase,  mediationpa
  })); 
  
  
-   }
+   
 
      i++;
-         returns ( mediationid, mediationname, mediationphase,  mediationparticipantcount,  mediationcount,participantaddress, participantname, offermade)
+         return ( mediationid, mediationname, mediationphase,  mediationparticipantcount,  mediationcount,participantaddress, participantname, offermade);
   
   
 } 
      
-     
-function ReMediationBid (address mediationid, string memory mediationname, uint mediationphase,  uint  mediationparticipantcount, uint mediationcount,address payable participantaddress, string memory participantname,uint offermade)  internal {
+}
+function ReMediationBid (address mediationid,string memory mediationname,  uint mediationphase,  uint  mediationparticipantcount, uint mediationcount,address payable participantaddress, string memory participantname,uint offermade, uint previousoffer)  public returns(address _mediationid, string memory _mediationname, uint _mediationphase,  uint  _mediationparticipantcount, uint _mediationcount,address payable _participantaddress, string memory _participantname,uint _offermade, uint _previousoffer,string memory _rebidstatus) {
        uint i = 0;
-           bidallow = true;
-           if(bidallow == true){
+       string memory rebidstatus;
+           rebidallow = true;
+           if(rebidallow == true){
                
     
     
@@ -112,7 +113,6 @@ function ReMediationBid (address mediationid, string memory mediationname, uint 
 // NO PREVIOUS OFFER IN THIS WORK HERE
 
 
-emit mediationBidEvent( mediationid, mediationname, mediationphase,  mediationparticipantcount,  mediationcount,  participantaddress,  participantname, offermade);
 
 
  
@@ -132,15 +132,21 @@ emit mediationBidEvent( mediationid, mediationname, mediationphase,  mediationpa
                            
  })); 
  
- 
+    rebidstatus = 'Rebid accepted';
+   }
+   
+   else {
+       
+       rebidstatus = ' Rebid not allowed';
+       
    }
 
      i++;
          
+emit mediationBidEvent( mediationid, mediationname, mediationphase,  mediationparticipantcount,  mediationcount,  participantaddress,  participantname, offermade);
   
-  
+  return ( mediationid,  mediationphase,  mediationparticipantcount,  mediationcount, participantaddress,  participantname,offermade,  previousoffer, rebidstatus);
 } 
      
      
-
 }
