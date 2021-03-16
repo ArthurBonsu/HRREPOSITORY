@@ -1,4 +1,4 @@
-pragma solidity >=0.7.0 <0.8.0;
+pragma solidity >=0.4.0 <0.6.0;
 
 
 contract MediationNegotiation  {
@@ -13,6 +13,7 @@ contract MediationNegotiation  {
 uint i=0;
 bool rebidallow = false;
 bool bidallow = false;
+bool accept = false;
 
 
 
@@ -95,7 +96,7 @@ function ReMediationBid (address mediationid,string memory mediationname,  uint 
        uint i = 0;
        string memory rebidstatus;
            rebidallow = true;
-           if(rebidallow == true){
+           if(rebidallow == true && accept() == true){
                
     
     
@@ -147,6 +148,26 @@ emit mediationBidEvent( mediationid, mediationname, mediationphase,  mediationpa
   
   return ( mediationid,  mediationphase,  mediationparticipantcount,  mediationcount, participantaddress,  participantname,offermade,  previousoffer, rebidstatus);
 } 
+
+function acceptnow  () public returns (address _accept){
+    accept  =true;
+    return (accept); 
+    
+}
+
+function reviewprocess(address emediationid,string memory emediationname,  uint emediationphase,  uint  emediationparticipantcount, uint emediationcount,address payable eparticipantaddress, string memory eparticipantname,uint eoffermade, uint epreviousoffer, bool edecision, string memory ereviewstatus)public returns (address mediationid,string memory mediationname,  uint mediationphase,  uint  mediationparticipantcount, uint mediationcount,address payable participantaddress, string memory participantname,uint offermade, uint previousoffer, bool decision, string memory reviewstatus){
+        
+        if(decision == true){
+        accept();
+        reviewstatus = 'Review accepted!';
+        }
+        else{
+         reviewstatus = 'Review rejected!';    
+        }
+}
+    
+    
+
      
      
 }
